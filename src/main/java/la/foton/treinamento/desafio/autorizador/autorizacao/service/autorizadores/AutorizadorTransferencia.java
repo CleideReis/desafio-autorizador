@@ -23,8 +23,8 @@ public class AutorizadorTransferencia extends AbstractAutorizador {
     @Override
     protected void executaRegrasEspecificas(Transacao transacao) throws NegocioException {
         TransacaoTransferencia transacaoTransferencia = (TransacaoTransferencia) transacao;
-        Conta conta = contaService.consultaContaPorAgenciaENumero(transacaoTransferencia.getAgencia(), transacaoTransferencia.getConta());
-        Conta contaFavorecido = contaService.consultaContaPorAgenciaENumero(transacaoTransferencia.getAgenciaFavorecido(),
+        Conta conta = contaService.consultaConta(transacaoTransferencia.getAgencia(), transacaoTransferencia.getConta());
+        Conta contaFavorecido = contaService.consultaConta(transacaoTransferencia.getAgenciaFavorecido(),
                 transacaoTransferencia.getContaFavorecido());
         conta.transfere(transacaoTransferencia.getValor(), contaFavorecido);
         contaService.geraLancamento(conta, transacaoTransferencia.getValor(), TipoDoLancamento.DEBITO, "Transferêcia entre contas");
@@ -33,15 +33,6 @@ public class AutorizadorTransferencia extends AbstractAutorizador {
         contaService.atualizaConta(contaFavorecido);
     }
 
-    @Override
-    protected Log criaLog(Autorizacao autorizacao) throws NegocioException {
-        Log log = new Log();
-        log.setAgencia(autorizacao.getAgenciaOrigem());
-        log.setCanal(autorizacao.getCanal());
-        log.setDataRefencia(autorizacao.getDataReferencia());
-        log.setTipoDaTransacao(autorizacao.getTipoDaTransacao());
-        log.setParticao(autorizacao.getTransacao());
-        return log;
-    }
+
 
 }

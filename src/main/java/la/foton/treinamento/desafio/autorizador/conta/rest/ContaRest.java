@@ -2,7 +2,6 @@ package la.foton.treinamento.desafio.autorizador.conta.rest;
 
 import la.foton.treinamento.desafio.autorizador.common.exception.NegocioException;
 import la.foton.treinamento.desafio.autorizador.conta.dto.ContaDTO;
-import la.foton.treinamento.desafio.autorizador.conta.dto.ContaResponseDTO;
 import la.foton.treinamento.desafio.autorizador.conta.entity.Conta;
 import la.foton.treinamento.desafio.autorizador.conta.service.ContaService;
 
@@ -33,6 +32,6 @@ public class ContaRest {
     @GET
     @Path("consulta")
     public Response consultaConta(@QueryParam("agencia") Integer agencia, @QueryParam("numero") Integer numero) throws NegocioException {
-        return Response.ok(ContaResponseDTO.paraDTO(contaService.consultaConta(agencia, numero))).build();
+        return Response.ok(contaService.consultaConta(agencia, numero)).build();
     }
 }

@@ -10,7 +10,7 @@ public interface ContaDAO {
 
     void atualiza(Conta conta);
 
-    Optional<Conta> buscaConta(Integer agencia, Integer numero);
+    Conta buscaConta(Integer agencia, Integer numero);
 
 
 

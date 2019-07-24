@@ -29,22 +29,14 @@ public class LancamentoDaConta {
     @Column(name = "LANVAL")
     private BigDecimal valor;
 
-    @ManyToOne
-    @JoinColumns({
-            @JoinColumn(name = "LANPTACOD", referencedColumnName = "PTACOD"),
-            @JoinColumn(name = "LANCTANUM", referencedColumnName = "CTANUM")
-    })
-    private Conta conta;
-
     public LancamentoDaConta() {
     }
 
-    public LancamentoDaConta(TipoDoLancamento tipo, String descricao, BigDecimal valor, Conta conta) {
+    public LancamentoDaConta(TipoDoLancamento tipo, String descricao, BigDecimal valor) {
         super();
         this.tipo = tipo;
         this.descricao = descricao;
         this.valor = valor;
-        this.conta = conta;
     }
 
     @PrePersist

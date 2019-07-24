@@ -34,7 +34,7 @@ public class Conta {
     @Convert(converter = TipoDoPacoteDeServicosConverter.class)
     private TipoDoPacoteDeServicos tipoDoPacoteDeServicos;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "conta")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<LancamentoDaConta> lancamentos;
 
     @PrePersist

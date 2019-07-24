@@ -21,21 +21,12 @@ public class AutorizadorSaque extends AbstractAutorizador {
 
     @Override
     protected void executaRegrasEspecificas(Transacao transacao) throws NegocioException {
-        Conta conta = contaService.consultaContaPorAgenciaENumero(transacao.getAgencia(), transacao.getConta());
+        Conta conta = contaService.consultaConta(transacao.getAgencia(), transacao.getConta());
         conta.debita(transacao.getValor());
         contaService.geraLancamento(conta, transacao.getValor(), TipoDoLancamento.DEBITO, "Débito em conta");
         contaService.atualizaConta(conta);
     }
 
-    @Override
-    protected Log criaLog(Autorizacao autorizacao) throws NegocioException {
-        Log log = new Log();
-        log.setAgencia(autorizacao.getAgenciaOrigem());
-        log.setCanal(autorizacao.getCanal());
-        log.setDataRefencia(autorizacao.getDataReferencia());
-        log.setTipoDaTransacao(autorizacao.getTipoDaTransacao());
-        log.setParticao(autorizacao.getTransacao());
-        return log;
-    }
+
 
 }

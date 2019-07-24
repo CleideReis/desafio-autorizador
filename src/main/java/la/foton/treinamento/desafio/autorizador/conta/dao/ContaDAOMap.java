@@ -25,14 +25,14 @@ public class ContaDAOMap implements ContaDAO {
     }
 
     @Override
-    public Optional<Conta> buscaConta(Integer agencia, Integer numero) {
+    public Conta buscaConta(Integer agencia, Integer numero) {
         TypedQuery<Conta> query = em.createQuery("SELECT c FROM Conta c WHERE c.agencia = :agencia AND c.numero = :numero", Conta.class);
         query.setParameter("agencia", agencia);
         query.setParameter("numero", numero);
         try {
-            return Optional.of(query.getSingleResult());
+            return query.getSingleResult();
         } catch (NoResultException e) {
-            return Optional.empty();
+            return null;
         }
     }
 

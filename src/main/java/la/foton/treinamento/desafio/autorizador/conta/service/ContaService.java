@@ -15,6 +15,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @Stateless
 public class ContaService {
@@ -36,8 +37,13 @@ public class ContaService {
     }
 
     public Conta consultaConta(Integer agencia, Integer numero) throws NegocioException {
-        return contaDAO.buscaConta(agencia, numero)
-                .orElseThrow(() -> new NegocioException(Mensagem.CONTA_NAO_ENCONTRADA, Response.Status.NOT_FOUND));
+        Conta conta = contaDAO.buscaConta(agencia, numero);
+        if(conta == null) {
+            throw new NegocioException(Mensagem.CONTA_NAO_ENCONTRADA, Response.Status.NOT_FOUND);
+        }
+
+        return conta;
+
     }
 
 
@@ -46,8 +52,9 @@ public class ContaService {
     }
 
     public void geraLancamento(Conta conta, BigDecimal valor, TipoDoLancamento tipoDoLancamento, String descricao) {
-        LancamentoDaConta lancamentoDaConta = new LancamentoDaConta(tipoDoLancamento, descricao, valor, conta);
-        lancamentoDAO.insere(lancamentoDaConta);
+        LancamentoDaConta lancamentoDaConta = new LancamentoDaConta(tipoDoLancamento, descricao, valor);
+
+        conta.getLancamentos().add(lancamentoDaConta);
     }
 
 }
