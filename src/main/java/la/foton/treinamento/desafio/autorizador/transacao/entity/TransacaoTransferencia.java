@@ -2,7 +2,7 @@ package la.foton.treinamento.desafio.autorizador.transacao.entity;
 
 import javax.validation.constraints.NotNull;
 
-public class TransacaoTransferencia extends Transacao {
+public class TransacaoTransferencia extends TransacaoFinaceira {
 
     @NotNull
     private Integer agenciaFavorecido;

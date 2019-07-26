@@ -12,7 +12,7 @@ public enum Mensagem {
     CLIENTE_NAO_PODE_SER_CADASTRADO("Cliente não pode ser cadastrado"),
 
     // Mensagens de Infraestrutura
-    AUTORIZADOR_NAO_ENCONTRADO("Nao existe um autorizador para o código de transação {0}");
+    AUTORIZADOR_NAO_ENCONTRADO("Nao existe um autorizador para o código de transação {0}"), ERRO_CONVERSAO_JSON("Erro ao converter para JSON");
 
     private String texto;
 

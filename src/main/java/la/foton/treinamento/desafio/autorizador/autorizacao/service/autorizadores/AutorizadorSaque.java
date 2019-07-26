@@ -7,23 +7,24 @@ import la.foton.treinamento.desafio.autorizador.common.exception.NegocioExceptio
 import la.foton.treinamento.desafio.autorizador.conta.entity.Conta;
 import la.foton.treinamento.desafio.autorizador.conta.entity.TipoDoLancamento;
 import la.foton.treinamento.desafio.autorizador.conta.service.ContaService;
-import la.foton.treinamento.desafio.autorizador.log.entity.Log;
 import la.foton.treinamento.desafio.autorizador.transacao.entity.TipoDaTransacao;
 import la.foton.treinamento.desafio.autorizador.transacao.entity.Transacao;
+import la.foton.treinamento.desafio.autorizador.transacao.entity.TransacaoFinaceira;
 
 import javax.ejb.EJB;
 
-@Autorizador(transacao = TipoDaTransacao.SAQUE_EM_CONTA)
+@Autorizador(transacao = TipoDaTransacao.SAQUE)
 public class AutorizadorSaque extends AbstractAutorizador {
 
     @EJB
     private ContaService contaService;
 
     @Override
-    protected void executaRegrasEspecificas(Transacao transacao) throws NegocioException {
+    protected void executaRegrasEspecificas(Transacao transacao, Autorizacao autorizacao) throws NegocioException {
+        TransacaoFinaceira transacaoFinaceira = (TransacaoFinaceira) transacao;
         Conta conta = contaService.consultaConta(transacao.getAgencia(), transacao.getConta());
-        conta.debita(transacao.getValor());
-        contaService.geraLancamento(conta, transacao.getValor(), TipoDoLancamento.DEBITO, "Débito em conta");
+        conta.debita(transacaoFinaceira.getValor());
+        contaService.geraLancamento(conta, transacaoFinaceira.getValor(), TipoDoLancamento.DEBITO, "Débito em conta");
         contaService.atualizaConta(conta);
     }
 

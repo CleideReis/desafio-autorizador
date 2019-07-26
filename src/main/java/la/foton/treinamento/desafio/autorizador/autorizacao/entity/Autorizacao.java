@@ -71,6 +71,10 @@ public class Autorizacao {
 	@Column(name = "AUTSTA")
 	private EstadoDaAutorizacao estado;
 
+	@Lob
+	@Column(name = "AUTPRT")
+	private String particao;
+
 	public Autorizacao() {
 		this.estado = EstadoDaAutorizacao.NEGADA;
 	}
@@ -147,6 +151,14 @@ public class Autorizacao {
 
 	public EstadoDaAutorizacao getEstado() {
 		return estado;
+	}
+
+	public String getParticao() {
+		return particao;
+	}
+
+	public void setParticao(String particao) {
+		this.particao = particao;
 	}
 
 	public void autorizada() {
