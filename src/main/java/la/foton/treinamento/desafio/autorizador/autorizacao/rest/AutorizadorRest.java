@@ -1,6 +1,7 @@
 package la.foton.treinamento.desafio.autorizador.autorizacao.rest;
 
 import la.foton.treinamento.desafio.autorizador.transacao.entity.Transacao;
+import la.foton.treinamento.desafio.autorizador.transacao.entity.TransacaoFinaceira;
 import la.foton.treinamento.desafio.autorizador.transacao.entity.TransacaoTransferencia;
 
 import javax.ws.rs.Consumes;
@@ -15,14 +16,14 @@ public class AutorizadorRest extends AbstractAutorizadorRest {
 
     @POST
     @Path("deposito")
-    public Response validarDeposito(Transacao transacao) {
-        return executa(transacao);
+    public Response validarDeposito(TransacaoFinaceira transacaoFinaceira) {
+        return executa(transacaoFinaceira);
     }
 
     @POST
     @Path("saque")
-    public Response validarSaque(Transacao transacao) {
-        return executa(transacao);
+    public Response validarSaque(TransacaoFinaceira transacaoFinaceira) {
+        return executa(transacaoFinaceira);
     }
 
     @POST
