@@ -19,6 +19,9 @@ public class ClienteService {
         if (cliente.getCpf() == null || cliente.getCpf().isEmpty() || cliente.getNome() == null || cliente.getNome().isEmpty()) {
             throw new NegocioException(Mensagem.CLIENTE_NAO_PODE_SER_CADASTRADO);
         }
+        if (dao.buscaPorCpf(cliente.getCpf()) != null) {
+            throw new NegocioException(Mensagem.CLIENTE_NAO_JA_CADASTRADO);
+        }
         dao.insere(cliente);
         return cliente;
     }

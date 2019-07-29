@@ -10,6 +10,7 @@ public enum Mensagem {
     VALOR_PRECISA_SER_MAIOR_QUE_ZERO("O valor precisa ser maior que R$ 00,00"),
     SALDO_INSUFICIENTE("Saldo Insuficiente."),
     CLIENTE_NAO_PODE_SER_CADASTRADO("Cliente não pode ser cadastrado"),
+    CLIENTE_NAO_JA_CADASTRADO("Cliente já cadastrado!"),
 
     // Mensagens de Infraestrutura
     AUTORIZADOR_NAO_ENCONTRADO("Nao existe um autorizador para o código de transação {0}"), ERRO_CONVERSAO_JSON("Erro ao converter para JSON");

@@ -19,9 +19,7 @@ public class Cliente {
 	@Column(name = "CLTSTA")
 	private SituacaoDoCliente situacao;
 
-	public Cliente() {
-		this.situacao = SituacaoDoCliente.PENDENTE;
-	}
+	public Cliente() { this.situacao = SituacaoDoCliente.ATIVO; }
 
 
 	public String getCpf() {
