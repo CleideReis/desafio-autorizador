@@ -24,7 +24,7 @@ public class AutorizadorSaque extends AbstractAutorizador {
         TransacaoFinaceira transacaoFinaceira = (TransacaoFinaceira) transacao;
         Conta conta = contaService.consultaConta(transacao.getAgencia(), transacao.getConta());
         conta.debita(transacaoFinaceira.getValor());
-        contaService.geraLancamento(conta, transacaoFinaceira.getValor(), TipoDoLancamento.DEBITO, "Débito em conta");
+        contaService.adicionaLancamento(conta, transacaoFinaceira.getValor(), TipoDoLancamento.DEBITO, "Débito em conta");
         contaService.atualizaConta(conta);
     }
 

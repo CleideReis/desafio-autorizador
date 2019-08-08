@@ -25,6 +25,11 @@ public class ContaDAOMap implements ContaDAO {
     }
 
     @Override
+    public void delete(Conta conta) {
+        em.remove(conta);
+    }
+
+    @Override
     public Conta buscaConta(Integer agencia, Integer numero) {
         TypedQuery<Conta> query = em.createQuery("SELECT c FROM Conta c WHERE c.agencia = :agencia AND c.numero = :numero", Conta.class);
         query.setParameter("agencia", agencia);

@@ -26,8 +26,8 @@ public class AutorizadorTransferencia extends AbstractAutorizador {
         Conta contaFavorecido = contaService.consultaConta(transacaoTransferencia.getAgenciaFavorecido(),
                 transacaoTransferencia.getContaFavorecido());
         conta.transfere(transacaoTransferencia.getValor(), contaFavorecido);
-        contaService.geraLancamento(conta, transacaoTransferencia.getValor(), TipoDoLancamento.DEBITO, "Transferêcia entre contas");
-        contaService.geraLancamento(contaFavorecido, transacaoTransferencia.getValor(), TipoDoLancamento.CREDITO, "Transferêcia entre contas");
+        contaService.adicionaLancamento(conta, transacaoTransferencia.getValor(), TipoDoLancamento.DEBITO, "Transferêcia entre contas");
+        contaService.adicionaLancamento(contaFavorecido, transacaoTransferencia.getValor(), TipoDoLancamento.CREDITO, "Transferêcia entre contas");
         contaService.atualizaConta(conta);
         contaService.atualizaConta(contaFavorecido);
     }

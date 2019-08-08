@@ -9,6 +9,16 @@ public class ContaDTO {
     private String cpfTitular;
     private TipoDoPacoteDeServicos tipoDoPacoteDeServicos;
 
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    private Integer numero;
+
     public Integer getAgencia() {
         return agencia;
     }

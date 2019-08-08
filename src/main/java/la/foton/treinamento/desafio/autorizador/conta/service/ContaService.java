@@ -36,22 +36,27 @@ public class ContaService {
         return conta;
     }
 
+    public void remove(Integer agencia, Integer numero) throws NegocioException {
+        Conta conta = contaDAO.buscaConta(agencia, numero);
+        contaDAO.delete(conta);
+    }
+
     public Conta consultaConta(Integer agencia, Integer numero) throws NegocioException {
         Conta conta = contaDAO.buscaConta(agencia, numero);
         if(conta == null) {
             throw new NegocioException(Mensagem.CONTA_NAO_ENCONTRADA, Response.Status.NOT_FOUND);
         }
-
         return conta;
-
     }
+
+
 
 
     public void atualizaConta(Conta conta) {
         contaDAO.atualiza(conta);
     }
 
-    public void geraLancamento(Conta conta, BigDecimal valor, TipoDoLancamento tipoDoLancamento, String descricao) {
+    public void adicionaLancamento(Conta conta, BigDecimal valor, TipoDoLancamento tipoDoLancamento, String descricao) {
         LancamentoDaConta lancamentoDaConta = new LancamentoDaConta(tipoDoLancamento, descricao, valor);
 
         conta.getLancamentos().add(lancamentoDaConta);

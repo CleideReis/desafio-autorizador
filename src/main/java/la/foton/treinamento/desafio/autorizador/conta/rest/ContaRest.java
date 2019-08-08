@@ -30,8 +30,15 @@ public class ContaRest {
     }
 
     @GET
-    @Path("consulta")
-    public Response consultaConta(@QueryParam("agencia") Integer agencia, @QueryParam("numero") Integer numero) throws NegocioException {
+    @Path("consulta/{agencia}/{numero}")
+    public Response consultaConta(@PathParam("agencia") Integer agencia, @PathParam("numero") Integer numero) throws NegocioException {
         return Response.ok(contaService.consultaConta(agencia, numero)).build();
+    }
+
+    @DELETE
+    @Path("remove/{agencia}/{numero}")
+    public Response removeConta(@PathParam("agencia") Integer agencia, @PathParam("numero") Integer numero) throws NegocioException {
+        contaService.remove(agencia, numero);
+        return Response.noContent().build();
     }
 }

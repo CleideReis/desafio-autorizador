@@ -24,7 +24,7 @@ public class AutorizadorDeposito extends AbstractAutorizador {
         TransacaoFinaceira transacaoFinaceira = (TransacaoFinaceira) transacao;
         Conta conta = contaService.consultaConta(transacao.getAgencia(), transacao.getConta());
         conta.credita(transacaoFinaceira.getValor());
-        contaService.geraLancamento(conta, transacaoFinaceira.getValor(), TipoDoLancamento.CREDITO, "Crédito em conta");
+        contaService.adicionaLancamento(conta, transacaoFinaceira.getValor(), TipoDoLancamento.CREDITO, "Crédito em conta");
         contaService.atualizaConta(conta);
     }
 
