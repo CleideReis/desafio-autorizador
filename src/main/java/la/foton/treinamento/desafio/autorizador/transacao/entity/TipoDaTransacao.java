@@ -19,7 +19,8 @@ public enum TipoDaTransacao {
 	SAQUE(20, "Saque em Conta", TipoDoLancamento.DEBITO), //
 	TRANSFERENCIA(30, "Transferência entre Contas", TipoDoLancamento.DEBITO), //
 	EXTRATO(40, "Extrato da conta", TipoDoLancamento.NAO_APLICAVEL), //
-	SALDO(50, "Saldo da conta", TipoDoLancamento.NAO_APLICAVEL);//
+	SALDO(50, "Saldo da conta", TipoDoLancamento.NAO_APLICAVEL),
+	EXTRATO_POR_PERIODO(60, "Extrato por periodo", TipoDoLancamento.NAO_APLICAVEL);//
 
 
 	private Integer chave;

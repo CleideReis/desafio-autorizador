@@ -41,6 +41,8 @@ public class TipoDaTransacaoConverter implements AttributeConverter<TipoDaTransa
 			return TipoDaTransacao.EXTRATO;
 		case 50:
 			return TipoDaTransacao.SALDO;
+		case 60:
+			return TipoDaTransacao.EXTRATO_POR_PERIODO;
 		default:
 			throw new IllegalArgumentException("Unknown" + value);
 		}

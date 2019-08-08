@@ -1,6 +1,7 @@
 package la.foton.treinamento.desafio.autorizador.autorizacao.rest;
 
 import la.foton.treinamento.desafio.autorizador.transacao.entity.Transacao;
+import la.foton.treinamento.desafio.autorizador.transacao.entity.TransacaoExtratoPorPeriodo;
 import la.foton.treinamento.desafio.autorizador.transacao.entity.TransacaoFinaceira;
 import la.foton.treinamento.desafio.autorizador.transacao.entity.TransacaoTransferencia;
 
@@ -41,6 +42,12 @@ public class AutorizadorRest extends AbstractAutorizadorRest {
     @POST
     @Path("extrato")
     public Response extratoResponse(Transacao transacao) {
+        return executa(transacao);
+    }
+
+    @POST
+    @Path("extrato-por-periodo")
+    public Response extratoPorPeriodoResponse(TransacaoExtratoPorPeriodo transacao) {
         return executa(transacao);
     }
 
