@@ -16,31 +16,31 @@ public class AutorizadorRest extends AbstractAutorizadorRest {
 
     @POST
     @Path("deposito")
-    public Response validarDeposito(TransacaoFinaceira transacaoFinaceira) {
+    public Response depositoResponse(TransacaoFinaceira transacaoFinaceira) {
         return executa(transacaoFinaceira);
     }
 
     @POST
     @Path("saque")
-    public Response validarSaque(TransacaoFinaceira transacaoFinaceira) {
+    public Response SaqueResponse(TransacaoFinaceira transacaoFinaceira) {
         return executa(transacaoFinaceira);
     }
 
     @POST
     @Path("transferencia")
-    public Response validarTransferencia(TransacaoTransferencia transacaoTransferencia) {
+    public Response transferenciaResponse(TransacaoTransferencia transacaoTransferencia) {
         return executa(transacaoTransferencia);
     }
 
     @POST
     @Path("saldo")
-    public Response validarSaldo(Transacao transacao) {
+    public Response saldoResponse(Transacao transacao) {
         return executa(transacao);
     }
 
     @POST
     @Path("extrato")
-    public Response validarExtrato(Transacao transacao) {
+    public Response extratoResponse(Transacao transacao) {
         return executa(transacao);
     }
 

@@ -38,6 +38,9 @@ public class ContaService {
 
     public void remove(Integer agencia, Integer numero) throws NegocioException {
         Conta conta = contaDAO.buscaConta(agencia, numero);
+        if (new BigDecimal("0.0") != conta.getSaldo()) {
+            throw new NegocioException(Mensagem.CONTA_NAO_PODE_SER_EXCLUIDA);
+        }
         contaDAO.delete(conta);
     }
 
